@@ -1,0 +1,38 @@
+-- ESTE SCRIPT INSERTA DATOS EN LA TABLA 'tarifas'
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (1, 5000.0, 1453.02);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (2, 5000.0, 1378.78);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (3, 5000.0, 2503.19);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (4, 5000.0, 2265.56);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (5, 5000.0, 2542.0);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (6, 5000.0, 1224.98);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (7, 5000.0, 2946.14);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (8, 5000.0, 2254.46);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (9, 5000.0, 2751.12);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (10, 5000.0, 1917.99);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (11, 5000.0, 1204.81);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (12, 5000.0, 1024.76);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (13, 5000.0, 2023.67);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (14, 5000.0, 1219.39);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (15, 5000.0, 2305.09);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (16, 5000.0, 3264.57);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (17, 5000.0, 1738.89);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (18, 5000.0, 1373.79);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (19, 5000.0, 2351.59);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (20, 5000.0, 1254.77);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (21, 5000.0, 1119.93);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (22, 5000.0, 1665.44);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (23, 5000.0, 3334.3);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (24, 5000.0, 2283.64);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (25, 5000.0, 1377.82);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (26, 5000.0, 3214.6);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (27, 5000.0, 2221.97);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (28, 5000.0, 2135.36);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (29, 5000.0, 1833.75);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (30, 5000.0, 3005.47);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (31, 5000.0, 1911.93);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (32, 5000.0, 1564.1);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (33, 5000.0, 3419.46);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (34, 5000.0, 1222.03);
+                insert into tarifas (id_obra_social, tarifa_normal, tarifa_obra_social) values (35, 5000.0, 1850.59);
+-- PARA CHEQUEAR QUE LOS DATOS HAYAN SIDO CARGADOS CORRECTAMENTE, DESCOMENTAR Y EJECUTAR LA SIGUIENTE LÍNEA
+-- SELECT * FROM tarifas;
