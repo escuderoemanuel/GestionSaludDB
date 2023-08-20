@@ -51,7 +51,7 @@ JOIN medicos m ON r.id_medico = m.id;
 -- SELECT * FROM vw_recetas; 
 
  
--- 04. 'vw_historial_medico': 
+-- 04. 'vw_historial_medico': MUESTRA UN RESUMEN DEL HISTORIAL MÉDICO CON FECHA, DETALLE, NOMBRE COMPLETO DEL MÉDICO Y DEL PACIENTE
 CREATE VIEW vw_historial_medico AS
 SELECT hm.fecha_registro, hm.nota_medica,
        CONCAT(p.apellido, ' ', p.nombre) AS paciente,
@@ -64,7 +64,7 @@ ORDER BY paciente;
 -- SELECT * FROM vw_historial_medico;
 
 
--- 05. 'vw_facturas_pendientes': MUESTRA
+-- 05. 'vw_facturas_pendientes': MUESTRA UN RESUMEN DE LAS FACTURAS QUE TIENEN UN ESTADO 'PENDIENTE'
 CREATE VIEW vw_facturas_pendientes AS
 SELECT f.id AS factura_id, f.numero_factura, f.fecha_emision,
       CONCAT(p.apellido,'', p.nombre) AS paciente, f.total_factura, f.fecha_vencimiento
@@ -102,7 +102,7 @@ ORDER BY os.nombre;
 
 
 
--- 08. 'vw_pacientes_con_cobertura': 
+-- 08. 'vw_pacientes_con_cobertura': MUESTRA UNA LISTA DE PACIENTES QUE SI TIENEN OBRA SOCIAL, CON SU NOMBRE, DNI Y OBRA SOCIAL
 CREATE VIEW vw_pacientes_con_cobertura AS
 SELECT CONCAT(p.apellido,' ', p.nombre) AS paciente, p.dni, obra_social
 FROM pacientes p
@@ -112,7 +112,7 @@ ORDER BY paciente;
 -- SELECT * FROM vw_pacientes_con_cobertura;
 
 
--- 09. 'vw_pacientes_sin_cobertura': 
+-- 09. 'vw_pacientes_sin_cobertura': MUESTRA UNA LISTA DE PACIENTES QUE NO TIENEN OBRA SOCIAL, CON SU NOMBRE, DNI
 CREATE VIEW vw_pacientes_sin_cobertura AS
 SELECT CONCAT(p.apellido,' ', p.nombre) AS paciente, p.dni ,obra_social
 FROM pacientes p
