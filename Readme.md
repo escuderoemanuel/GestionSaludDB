@@ -13,14 +13,14 @@
 
 ## Información General
 
-<a name="Información-General"></a>
+<a name="info"></a>
 Esta base de datos fue creada como trabajo final del curso de SQL realizado en Coderhouse, intentando aplicar los conocimientos adquiridos durante la cursada en cuanto a creación de Schemas, Tablas, Triggers, Stored Procedures, Vistas, Funciones, Usuarios y demás scripts de consultas de acuerdo a las necesidades descubiertas en el transcurso del desarrollo de la misma.
 
 Los datos son ficticios, generados de forma manual y también mediante herramientas online.
 
 ## Tecnologías Utilizadas
 
-<a name="info"></a>
+<a name="tecno"></a>
 
 - [MySQL Workbench](https://www.mysql.com/products/workbench/): Version 8.0
 - [Diagrams](https://www.drawio.com/)
