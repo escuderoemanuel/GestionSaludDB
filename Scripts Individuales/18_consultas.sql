@@ -75,3 +75,39 @@ SELECT m.nombre, m.apellido, SUM(f.total_factura) AS ingreso_total
 FROM medicos m
 LEFT JOIN facturas f ON m.id = f.id_medico AND MONTH(f.fecha_emision) = 5
 GROUP BY m.id;
+
+
+
+/*PARA VISUALIZAR LAS TABLAS Y VISTAS PUEDES DESCOMENTAR Y EJECUTAR LAS SIGUIENTES LÍNEAS*/
+
+-- SELECT * FROM pacientes;
+-- SELECT * FROM pacientes_telefonos;
+-- SELECT * FROM administrativos;
+-- SELECT * FROM administrativos_telefonos;
+-- SELECT * FROM auditores;
+-- SELECT * FROM auditores_telefonos;
+-- SELECT * FROM usuarios_sistema;
+-- SELECT * FROM citas_medicas;
+-- SELECT * FROM obras_sociales;
+-- SELECT * FROM datos_obras_sociales;
+-- SELECT * FROM facturas;
+-- SELECT * FROM historiales_medicos;
+-- SELECT * FROM ingresos_facturacion_mensual;
+-- SELECT * FROM medicos;
+-- SELECT * FROM medicos_telefonos;
+-- SELECT * FROM datos_obras_sociales;
+-- SELECT * FROM rendimiento_medico;
+-- SELECT * FROM tarifas;
+-- 
+-- SELECT * FROM vw_citas_pendientes;
+-- SELECT * FROM vw_facturas_paciente_obra_social;
+-- SELECT * FROM vw_recetas;
+-- SELECT * FROM vw_historial_medico;
+-- SELECT * FROM vw_facturas_pendientes;
+-- SELECT * FROM vw_ingreso_mensual_obras_sociales;
+-- SELECT * FROM vw_ingreso_total_obras_sociales;
+-- SELECT * FROM vw_pacientes_con_cobertura;
+-- SELECT * FROM vw_pacientes_sin_cobertura;
+-- SELECT * FROM vw_info_pacientes;
+-- SELECT * FROM vw_info_administrativos;
+-- SELECT * FROM vw_info_medicos;
