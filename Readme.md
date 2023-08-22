@@ -6,10 +6,10 @@
 
 ## Contenido
 
-1. [Información General](#Información-General)
-2. [Tecnologías Utilizadas](#Tecnologías-Utilizadas)
-3. [Instalación](#Instalación)
-4. [Datos del Desarrollador](#Datos-del-Desarrollador)
+1. [Información General](#info)
+2. [Tecnologías Utilizadas](#tecno)
+3. [Instalación](#instal)
+4. [Datos del Desarrollador](#desarrollador)
 
 ## Información General
 
@@ -20,7 +20,7 @@ Los datos son ficticios, generados de forma manual y también mediante herramien
 
 ## Tecnologías Utilizadas
 
-<a name="Tecnologías-Utilizadas"></a>
+<a name="info"></a>
 
 - [MySQL Workbench](https://www.mysql.com/products/workbench/): Version 8.0
 - [Diagrams](https://www.drawio.com/)
@@ -30,7 +30,7 @@ Los datos son ficticios, generados de forma manual y también mediante herramien
 
 ## Instalación
 
-<a name="Instalación"></a>
+<a name="instal"></a>
 
 - Descargar e instalar MySQL Workbench
 - Clonar el repositorio: $ git clone https://github.com/escuderoemanuel/GestionSaludDB.git
@@ -39,7 +39,7 @@ Los datos son ficticios, generados de forma manual y también mediante herramien
 
 ## Datos-del-Desarrollador
 
-<a name="Datos-del-Desarrollador"></a>
+<a name="desarrollador"></a>
 
 - Nombre: Emanuel Escudero [_Desarrollador FrontEnd_]
 - Sitio Web: https://emanuelescudero.ar
