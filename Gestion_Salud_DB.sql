@@ -842,14 +842,13 @@ ESTE SCRIPT CREA USUARIOS DEL SISTEMA
 
 -- DESCOMENTAR Y EJECUTAR LA SIGUIENTE LÍNEA PARA CONSULTAR LISTA DE USUARIOS
 -- SELECT * FROM user;
-        SELECT * FROM user;
 
 
--- SI LOS USUARIOS 'auditor@localhost', 'administrativo@localhost', 'medico@localhost' EXISTEN LOS ELIMINO PARA CREARLOS NUEVAMENTE CON LOS PERMISOS ADECUADOS
-        -- DROP USER 'auditor@localhost';
-        -- DROP USER 'administrativo@localhost';
-        -- DROP USER 'medico@localhost';
-        
+-- SI LOS USUARIOS 'auditor@localhost', 'administrativo@localhost', 'medico@localhost'
+--  EXISTEN LOS ELIMINO PARA CREARLOS NUEVAMENTE CON LOS PERMISOS ADECUADOS
+         DROP USER IF EXISTS 'auditor@localhost';
+		 DROP USER IF EXISTS 'administrativo@localhost';
+		 DROP USER IF EXISTS 'medico@localhost';
 
 -- CREACIÓN DE 3 USUARIOS ''auditor', 'administrativo' y 'medico' CON LA CONTRASEÑA 'admin' PARA CADA UNO DE ELLOS
         CREATE USER 'auditor@localhost' IDENTIFIED BY 'admin';
@@ -884,7 +883,7 @@ ESTE SCRIPT CREA USUARIOS DEL SISTEMA
  INSERTAR DATOS EN LA TABLA 'pacientes' Y EN LA TABLA 'pacientes_telefonos':
  */
 -- ES NECESARIO SETEAR EL AUTOCOMMIT EN 0 PARA PODER REALIZAR INSERCIONES/ELIMINACIONES
-SELECT @@AUTOCOMMIT;
+-- SELECT @@AUTOCOMMIT;
 SET AUTOCOMMIT = 0;
 -- INICIA LA TRANSACCIÓN
 START TRANSACTION;
@@ -3406,6 +3405,83 @@ ESTE SCRIPT INSERTA DATOS EN LA TABLA 'citas_medicas'
 -- SE EJECUTAN LOS SIGUIENTES STORED PROCEDURES, PARA ACTUALIZAR EL CONTENIDO DE LAS TABLAS CORRESPONDIENTES
 CALL sp_ingresos_facturacion_mensual();
 CALL sp_rendimiento_medico();
+
+
+/* ================ SCRIPT DE CONSULTAS ================ */
+
+-- 1. RANGO ETARIO DE LOS PACIENTES
+SELECT 
+    CASE
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) < 18 THEN 'Menor de 18 años'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 30 THEN '18-30 años'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 31 AND 50 THEN '31-50 años'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) > 50 THEN 'Mayor de 50 años'
+    END AS rango_etario,
+    COUNT(*) AS cantidad_pacientes
+FROM 
+    pacientes
+GROUP BY 
+    rango_etario
+ORDER BY 
+    MIN(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()));
+
+
+-- 2. CANTIDAD DE PACIENTES POR OBRA SOCIAL
+SELECT 
+    obra_social,
+    COUNT(*) AS cantidad_pacientes
+FROM 
+    pacientes
+GROUP BY 
+    obra_social
+ORDER BY obra_social;
+
+
+-- 3. CANTIDAD DE PACIENTES ATENDIDOS (CON CITA CONCRETADA)POR CADA MÉDICO 
+SELECT
+    id_medico,
+    COUNT(*) AS cantidad_pacientes_atendidos
+FROM
+    citas_medicas
+WHERE estado = 'REALIZADA'
+GROUP BY
+    id_medico
+ORDER BY cantidad_pacientes_atendidos DESC;
+
+-- 4. CANTIDAD PACIENTES CON COBERTURA MÉDICA Y SIN COBERTURA MÉDICA
+SELECT
+    (SELECT COUNT(*) FROM pacientes WHERE obra_social <> 'PARTICULAR') AS pacientes_con_cobertura,
+    (SELECT COUNT(*) FROM pacientes WHERE obra_social = 'PARTICULAR') AS pacientes_sin_cobertura;
+
+-- 5. PROMEDIO DEL INGRESO GENERADO POR UN PACIENTE CON COBERTURA EN RELACIÓN A UNO SIN COBERTURA
+SELECT
+    AVG(CASE WHEN p.obra_social <> 'PARTICULAR' THEN f.total_factura ELSE NULL END) AS promedio_con_cobertura,
+    AVG(CASE WHEN p.obra_social = 'PARTICULAR' THEN f.total_factura ELSE NULL END) AS promedio_sin_cobertura
+FROM pacientes p
+LEFT JOIN facturas f ON p.id = f.id_paciente;
+
+-- 6. CANTIDAD DE FACTURAS PAGADAS CADA MÉTODO DE PAGO 
+SELECT
+    SUM(CASE WHEN metodo_pago = 'EFECTIVO' THEN 1 ELSE 0 END) AS cantidad_efectivo,
+    SUM(CASE WHEN metodo_pago = 'TARJETA DÉBITO' THEN 1 ELSE 0 END) AS cantidad_tarjeta_debito,
+    SUM(CASE WHEN metodo_pago = 'TARJETA CRÉDITO' THEN 1 ELSE 0 END) AS cantidad_tarjeta_credito,
+    SUM(CASE WHEN metodo_pago = 'TRANSFERENCIA BANCARIA' THEN 1 ELSE 0 END) AS cantidad_transferencia,
+    SUM(CASE WHEN metodo_pago = 'MERCADO PAGO' THEN 1 ELSE 0 END) AS cantidad_mercado_pago
+FROM facturas;
+
+
+-- 7. LISTAR LOS PACIENTES CON SU CANTIDAD DE CITAS MÉDICAS PENDIENTES.:
+SELECT p.nombre, p.apellido, COUNT(cm.id) AS num_citas_pendientes
+FROM pacientes p
+LEFT JOIN citas_medicas cm ON p.id = cm.id_paciente AND cm.estado = 'PENDIENTE'
+GROUP BY p.id;
+
+
+-- 8. CALCULAR EL TOTAL DE INGRESOS GENERADO POR CADA MÉDICO EN UN MES ESPECÍFICO:
+SELECT m.nombre, m.apellido, SUM(f.total_factura) AS ingreso_total
+FROM medicos m
+LEFT JOIN facturas f ON m.id = f.id_medico AND MONTH(f.fecha_emision) = 5
+GROUP BY m.id;
 
 
 /*PARA VISUALIZAR LAS TABLAS Y VISTAS PUEDES DESCOMENTAR Y EJECUTAR LAS SIGUIENTES LÍNEAS*/

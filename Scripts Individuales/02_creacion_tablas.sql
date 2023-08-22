@@ -233,3 +233,6 @@ CREATE TABLE ingresos_facturacion_mensual (
     mes_facturado VARCHAR(12),
     total_ingreso DECIMAL(10, 2)
 );
+
+
+

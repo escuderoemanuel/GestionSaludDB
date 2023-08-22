@@ -9,10 +9,11 @@ ESTE SCRIPT CREA USUARIOS DEL SISTEMA
 -- SELECT * FROM user;
 
 
--- SI LOS USUARIOS 'auditor@localhost', 'administrativo@localhost', 'medico@localhost' EXISTEN LOS ELIMINO PARA CREARLOS NUEVAMENTE CON LOS PERMISOS ADECUADOS
-        -- DROP USER 'auditor@localhost';
-        -- DROP USER 'administrativo@localhost';
-        -- DROP USER 'medico@localhost';
+-- SI LOS USUARIOS 'auditor@localhost', 'administrativo@localhost', 'medico@localhost'
+-- EXISTEN LOS ELIMINO PARA CREARLOS NUEVAMENTE CON LOS PERMISOS ADECUADOS
+        DROP USER IF EXISTS 'auditor@localhost';
+		DROP USER IF EXISTS 'administrativo@localhost';
+		DROP USER IF EXISTS 'medico@localhost';
         
 
 -- CREACIÓN DE 3 USUARIOS ''auditor', 'administrativo' y 'medico' CON LA CONTRASEÑA 'admin' PARA CADA UNO DE ELLOS
